@@ -13,8 +13,13 @@ HOSTNAME="$(hostname)"
 NOW="$(date '+%Y-%m-%d %H:%M:%S %z')"
 
 # print parameters (for debugging)
-# setup-telegram-sys-alert.sh --test --debug
-if  case "${1:-}" in --debug) true ;; *) false ;; esac; then
+# --debug flag (syntax benar)
+DEBUG=false
+if [[ "${1:-}" == "--debug" ]]; then
+  DEBUG=true
+fi
+
+if $DEBUG; then
     echo "BOT_TOKEN=$BOT_TOKEN"
     echo "CHAT_ID=$CHAT_ID"
     echo "THRESHOLD=$THRESHOLD"
@@ -50,7 +55,7 @@ mem_used_pct=$(( 100 - (100*mem_avail_kb / (mem_total_kb==0?1:mem_total_kb)) ))
 
 # === Alert ===
 msg="*ALERT:* High usage on \`${HOSTNAME}\`\n*Time:* ${NOW}\n"
-alert=false
+alert=true
 
 if (( cpu_usage >= THRESHOLD )); then
   msg+="- *CPU:* ${cpu_usage}%\n"
