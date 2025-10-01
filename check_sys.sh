@@ -24,7 +24,7 @@ send_tg () {
   curl -sS -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
     -d chat_id="${CHAT_ID}" \
     -d parse_mode="Markdown" \
-    --data-urlencode text="$msg" >/dev/null
+    --data-urlencode text="$msg" 
 }
 
 # === CPU ===
