@@ -19,6 +19,11 @@ if [[ "${1:-}" == "--debug" ]]; then
   DEBUG=true
 fi
 
+alert=false
+if [[ "${1:-}" == "--alert" ]]; then
+  alert=true
+fi
+
 if $DEBUG; then
     echo "BOT_TOKEN=$BOT_TOKEN"
     echo "CHAT_ID=$CHAT_ID"
@@ -55,7 +60,6 @@ mem_used_pct=$(( 100 - (100*mem_avail_kb / (mem_total_kb==0?1:mem_total_kb)) ))
 
 # === Alert ===
 msg="*ALERT:* High usage on \`${HOSTNAME}\`\n*Time:* ${NOW}\n"
-alert=true
 
 if (( cpu_usage >= THRESHOLD )); then
   msg+="- *CPU:* ${cpu_usage}%\n"
