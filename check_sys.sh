@@ -8,6 +8,16 @@ THRESHOLD="${THRESHOLD:-86}"
 HOSTNAME="$(hostname)"
 NOW="$(date '+%Y-%m-%d %H:%M:%S %z')"
 
+# print parameters (for debugging)
+if  case "${1:-}" in --debug) true ;; *) false ;; esac; then
+    echo "BOT_TOKEN=$BOT_TOKEN"
+    echo "CHAT_ID=$CHAT_ID"
+    echo "THRESHOLD=$THRESHOLD"
+    echo "HOSTNAME=$HOSTNAME"
+    echo "NOW=$NOW"
+fi
+
+
 send_tg () {
   local msg="$1"
   curl -sS -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \

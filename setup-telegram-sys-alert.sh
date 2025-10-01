@@ -104,8 +104,8 @@ if (( cpu_usage >= THRESHOLD )); then
   alert=true
 fi
 if (( mem_used_pct >= THRESHOLD )); then
-  used_gb=$(awk -v t="$mem_total_kb" -v a="$mem_avail_kb" 'BEGIN{printf "%.2f",(t-a)/1024/1024)')
-  total_gb=$(awk -v t="$mem_total_kb" 'BEGIN{printf "%.2f",t/1024/1024)')
+  used_gb=$(awk -v t="$mem_total_kb" -v a="$mem_avail_kb" 'BEGIN{printf "%.2f",(t-a)/1024/1024}')
+  total_gb=$(awk -v t="$mem_total_kb" 'BEGIN{printf "%.2f",t/1024/1024}')
   msg+="- *Mem:* ${mem_used_pct}% (${used_gb}/${total_gb} GB)\n"
   alert=true
 fi
