@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
+# (opsional) baca env file systemd jika ada
+if [[ -f "/etc/telegram-sys-alert.env" ]]; then
+  # shellcheck disable=SC1091
+  source /etc/telegram-sys-alert.env
+fi
 # === CONFIG ===
 BOT_TOKEN="${BOT_TOKEN:-YOUR_TELEGRAM_BOT_TOKEN}"
 CHAT_ID="${CHAT_ID:-YOUR_CHAT_ID}"
