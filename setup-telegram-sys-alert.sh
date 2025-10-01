@@ -189,7 +189,7 @@ status() {
 test_run() {
   echo "Running one-off test (does NOT change timer)…"
   # For a guaranteed test alert, temporarily set THRESHOLD=0 for this run only:
-  THRESHOLD=0 "${BIN_PATH}" || true
+  THRESHOLD=0 "${BIN_PATH} --debug" || true
   echo "If BOT_TOKEN/CHAT_ID valid, you should receive a Telegram message."
 }
 
