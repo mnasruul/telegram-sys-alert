@@ -1,0 +1,7 @@
+[Unit]
+Description=Check CPU/Mem and notify Telegram
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/telegram-sys-alert.env
+ExecStart=/usr/local/bin/check_sys.sh

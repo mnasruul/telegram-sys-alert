@@ -1,0 +1,11 @@
+[Unit]
+Description=Run check-sys every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=5s
+Unit=check-sys.service
+
+[Install]
+WantedBy=timers.target
